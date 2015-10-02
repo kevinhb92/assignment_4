@@ -28,14 +28,14 @@ function setup() {
 function draw() {
 
 	//////////////////////////////
-	// update
+	// added a brequet
 
 	updateBall();
 	paddle.x = mouseX;
 
 
 	//////////////////////////////
-	// draw
+	// changed circle to ellipse, square to rect
 
 	background(50, 50, 50);
 	ellipse(ball.x, ball.y, ball.radius * 2, ball.radius * 2);
@@ -62,7 +62,7 @@ function updateBall() {
 	if (ball.x < 0 + ball.radius) {
 		ball.speedX = -ball.speedX;
 	}
-	// bottom
+	// made the ball not to exceed the bottom
 	if (ball.y > height + (ball.radius - 25)) {
 		ball.speedY = -ball.speedY;
 	}
@@ -74,6 +74,7 @@ function updateBall() {
 
 	// check for a *collision* between the ball and the paddle
 	// look up the && operator
+	//'&&' means 'and' in javascript
 
 	if (ball.x > (paddle.x - paddle.width * 0.5) && ball.x < (paddle.x + paddle.width *
 			0.5) && ball.y > paddle.y - ball.radius) {

@@ -37,7 +37,7 @@ function draw() {
 		fill(96, 166, 102);
 		ellipse(locationX[i], locationY[i], 16, 16);
 	}
-	// seperated stempart and leaf to prevent from overlappaing
+	// seperated stempart and leaf part to prevent from overlappaing
 
 	//set the number of flower (leaf part)
 	for (var i = 0; i < 30; i++) {
