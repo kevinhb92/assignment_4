@@ -1,18 +1,39 @@
 function setup() {
 	// create a place to draw
-	createCanvas(640, 360);
+	createCanvas(640, 480);
 	noStroke();
-	noLoop();
 }
 
 function draw() {
 	// clear the background
-	background(150, 50, 150);
+	background(90, 90, 110);
 
-	// set a fill color
-	fill(255, 255, 255);
+	// draw a square boarder
+	fill(0, 0, 0);
+	rect(45, 45, 200, 395);
 
-	// draw the ellipse
-	var diameter = random(100, 200);
-	ellipse(320, 180, diameter, diameter);
+	//give a out of bound limit for red X
+	//right
+	if (mouseX >= 240) {
+		mouseX = 240;
+	}
+	//bottom
+	if (mouseY >= 435) {
+		mouseY = 435;
+	}
+	//left
+	if (mouseX <= 45) {
+		mouseX = 45;
+	}
+	//top
+	if (mouseY <= 45) {
+		mouseY = 45;
+	}
+
+	//draw a crossed X shaped line
+	stroke(200, 50, 50);
+	strokeWeight(20);
+	line(mouseX - 40, mouseY - 40, mouseX + 40, mouseY + 40, 3);
+	line(mouseX - 40, mouseY + 40, mouseX + 40, mouseY - 40, 3);
+
 }
