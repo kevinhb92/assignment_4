@@ -1,57 +1,88 @@
-//give a array to location X and Y of flower
-var locationX = [];
-var locationY = [];
+// list the illustration that i am going to use
+var backhandImg;
+var backgroundImg;
+var bulletImg;
+var fingerImg;
+var fronthandImg;
+var lowergunImg;
+var uppergunImg;
+var reloadSound;
+var fireSound;
+var reloadImg;
+//place the bullet
+var position = 400;
 
+
+function preload() {
+	backgroundImg = loadImage("images_1/background.png");
+	backhandImg = loadImage("images_1/backhand.png");
+	bulletImg = loadImage("images_1/bullet.png");
+	fingerImg = loadImage("images_1/finger.png");
+	fronthandImg = loadImage("images_1/fronthand.png");
+	lowergunImg = loadImage("images_1/lowergun.png");
+	uppergunImg = loadImage("images_1/uppergun.png");
+	reloadImg = loadImage("images_1/RELOAD.png");
+	reloadSound = loadSound('images_1/reload.mp3');
+	fireSound = loadSound('images_1/fire.mp3');
+}
+//draw the canvas
 function setup() {
-	// create a place to draw
 	createCanvas(640, 480);
-	noStroke();
-
-	// set up the condition for the location of the flower
-	for (var i = 0; i < 30; i++) {
-		locationX[i] = random(0, 640);
-		locationY[i] = random(150, 480);
-	}
 }
 
+// 마우스를 뒤로 가져갈때 장전하는 소리를 들리게 하고
+//http://www.soundjay.com/gun-sound-effect.html
+
+//start drawing a day
+
+
+
 function draw() {
-	// clear the background with a color of sky
-	background(104, 191, 248);
+	image(backgroundImg, 0, 0);
+	image(backhandImg, 190, 250);
+	image(lowergunImg, 40, 148);
+	image(reloadImg, 400, 280);
 
-	//draw ground
-	fill(49, 178, 59);
-	rect(0, 250, 640, 480);
-
-	//set the number of flower (stem part)
-	for (var i = 0; i < 30; i++) {
-
-		// stem of the flower
-		fill(12, 119, 21);
-		rect((locationX[i] - 3), locationY[i], 6, 120, 3);
-
-		// outside flower bud for flower
-		fill(12, 119, 21);
-		ellipse(locationX[i], locationY[i], 20, 20);
-
-		// inside flower bud for flower
-		fill(96, 166, 102);
-		ellipse(locationX[i], locationY[i], 16, 16);
+	//give a attribute to bullet
+	position = position + 3;
+	if (mouseIsPressed) {
+		position = 400;
 	}
-	// seperated stempart and leaf part to prevent from overlappaing
-
-	//set the number of flower (leaf part)
-	for (var i = 0; i < 30; i++) {
-		// outside leaf for flower
-		fill(255, 255, 255, 80);
-		ellipse(locationX[i], locationY[i], 50, 50);
-
-		// middle leaf for flower
-		fill(255, 255, 255, 70);
-		ellipse(locationX[i], locationY[i], 40, 40);
-
-		// inside leaf for flower
-		fill(255, 255, 255, 60);
-		ellipse(locationX[i], locationY[i], 30, 30);
-
+	if (mouseX > 205) {
+		position = 400;
 	}
+
+	image(bulletImg, position, 130);
+
+	//give a attribute to the upper gun
+	if ((mouseX - 140) <= 45) {
+		mouseX = 185;
+	}
+
+	if ((mouseX - 140) >= 90) {
+		mouseX = 230;
+	}
+
+	if (mouseIsPressed) {
+		image(uppergunImg, mouseX - 140, 91);
+	} else {
+		image(uppergunImg, 83, 91);
+	}
+
+	//give a attribute to the finger
+	if (mouseX <= 190) {
+		mouseX = 190;
+	}
+
+	if (mouseX >= 305) {
+		mouseX = 295;
+	}
+
+	if (mouseIsPressed) {
+		image(fingerImg, mouseX, 200);
+	} else {
+		image(fingerImg, 225, 200);
+	}
+
+	image(fronthandImg, 0, 200);
 }
